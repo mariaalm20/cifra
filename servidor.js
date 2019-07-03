@@ -9,4 +9,4 @@ app.use('desafio/answer.js', bodyParser.json())
 app.get( (req,res) => {
     return res.send('Ok')
 })
-app.listen(8080, () => console.console.log('Executando'))
+app.listen(8080, () => console.log('Executando'))
