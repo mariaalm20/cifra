@@ -1,23 +1,21 @@
-const sha1 = require('js-sha1')
-const fetch = require('node-fetch')
-//const url = 'https://api.codenation.dev/v1/challenge/dev-ps/generate-data?token=f3ac6dbe2fefb9cbb679961fb56bf8e714588df9'
-const url = 'desafio/answer.json'
-//console.log(url)
-fetch(url).then((resp) => resp.json()).then(function(requestURL){
+const json = require('./answer.json')
+//const buffer = require('buffer')
+let hashlib = require('hashlib-js')
+const sha1 = require('sha1-hex')
+const crypto = require('crypto')
 
 let lalfabeto = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-requestURL.cifrado.toLowerCase()
-requestURL.numero_casas = -1
-const desloc = requestURL.numero_casas
-let result = requestURL.decifrado
-result = []
-for (var i = 0; i < requestURL.cifrado.length; i++)
+json.numero_casas = -1
+const desloc =json.numero_casas
+let result = []
+
+for (var i = 0; i <json.cifrado.length; i++)
 {
- if(requestURL.cifrado[i] != ' ')
+ if(json.cifrado[i] != ' ')
  {
    for (var j = 0; j < lalfabeto.length; j++)
    {
-     if (requestURL.cifrado[i] == lalfabeto[j])
+     if (json.cifrado[i] == lalfabeto[j])
      {
        result[i] = lalfabeto[(j + desloc) % lalfabeto.length];
        break;
@@ -29,14 +27,21 @@ for (var i = 0; i < requestURL.cifrado.length; i++)
    result[i] = ' ';
  }
 }
-console.log(result.join(""))
+json.decifrado = result.join("")
+console.log(json.decifrado)
 
-sha1(String)
-let hash = sha1 (result.join(""))
-console.log(hash)
 
-})
+/*let hash = crypto.createHash('sha1').update(result.join("")).digest("hex")
+json.resumo_criptografico = hash
+console.log(json.resumo_criptografico)
 
-//.catch (function(error){
-   // console.log(error)
-//})
+let buffer = new Buffer(result.join(""))
+sha1(buffer)*/
+
+
+json.numero_casas = 1
+console.log(json)
+
+
+
+
